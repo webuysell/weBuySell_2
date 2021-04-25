@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <h3><a class="navbar navbar-dark bg-dark" href="/dashboard"><b> WeBuySell</b></a></h3>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="">Search</a>
+                    </li>
+                </ul>
+                <span class="navbar-text">
+                    Welcome, {{this_user.first_name}} {{this_user.last_name}} <a href="/logout" role="button"
+                    id="logout_button" class="btn btn-primary">Logout</a> 
+                </span>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="product_info">
+        <div class="picture">
+        {% if this_product.profile_pic %}
+        <img src="{{ this_product.profile_pic.url }}" alt="connect" width="250" height="250">
+        {% endif %}         
+        <form action="/dashboard/product/{{this_product.id}}/upload" method="POST" enctype="multipart/form-data" >
+            {% csrf_token %}
+            <input type="file" class='form-control' name="picture">
+            <div class="mb-4"></div>
+            <button class="btn btn-warning">Upload</button>
+        </form>
+        </div>
+        <div class="information">
+        <h1>Product Detail</h1>
+        <p>Product Name: {{this_product.product_name}} </p>
+        <p>Condition : {{this_product.condition}} </p>
+        <p>Price :$ {{this_product.price}} </p>
+        <p>Negotiable : {{this_product.negotiation}} </p>
+        <p>Seller : <a href="#"> {{this_product.seller.first_name}} {{this_product.seller.last_name}} </a></p>
+        </div>
+        <div class="delete_button">
+            {% if this_product.seller.id == this_user.id %}
+            <form action="/dashboard/{{this_product.id}}/delete" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form> 
+            {%endif%}
+        </div>
+    </div>
+    
+</body>
+
+</html>

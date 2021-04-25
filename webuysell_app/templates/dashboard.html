@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <h3><a class="navbar navbar-dark bg-dark" href="/dashboard"><b> WeBuySell</b></a></h3>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="">Search</a>
+                    </li>
+                </ul>
+                <span class="navbar-text">
+                    Welcome, {{this_user.first_name}} {{this_user.last_name}} <a href="/logout" role="button"
+                    id="logout_button" class="btn btn-primary">Logout</a> 
+                </span>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="search_button">
+            <a href="/dashboard/add_product" class="navbar navbar-dark"><b>Selling more?</b></a>
+            </div>
+        <h4><b>Product you posted </b></h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Condition</th>
+                    <th>Negotiable</th>
+                    <th>Seller</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in all_product %}
+                {% if this_user.id == product.seller.id %}
+                <tr>
+                    <td><a href="/dashboard/product/{{product.id}}"><b> {{product.product_name}}</b></td>
+                    <td>${{product.price}}</td>
+                    <td>{{product.condition}}</td>
+                    <td>{{product.negotiation}}</td>
+                    <td><a href=""><b> {{product.seller.first_name}} {{product.seller.last_name}}</b></td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+        <h4><b> Other Products:</b></h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Condition</th>
+                    <th>Negotiable</th>
+                    <th>Seller</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in all_product %}
+                {% if this_user.id != product.seller.id %}
+                <tr>
+                    <td><a href="/dashboard/product/{{product.id}}"><b> {{product.product_name}}</b></td>
+                        <td>${{product.price}}</td>
+                        <td>{{product.condition}}</td>
+                        <td>{{product.negotiation}}</td>
+                        <td><a href=""><b> {{product.seller.first_name}} {{product.seller.last_name}}</b></td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+
+</html>
