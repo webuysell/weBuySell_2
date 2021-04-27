@@ -13,6 +13,8 @@ urlpatterns = [
     path('dashboard/product/<int:id>/upload', views.image_upload_view),
     path("dashboard/<int:id>/delete", views.delete),
     path("logout", views.logout),
+    path("search", views.search),
+    
 ]
 
 if settings.DEBUG:

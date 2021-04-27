@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import *
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.views.generic import DetailView
 import bcrypt
 
@@ -151,7 +151,7 @@ def search(request):
         # to add more search field, need to add other queries
         
         entry_query = get_query(query_string, ['product_name'])
-        found_entries = Event.objects.filter(entry_query).order_by('id')
+        found_entries = Product.objects.filter(entry_query).order_by('id')
 
     context = { 
         'this_user' : User.objects.get(id=request.session["user_id"]),
