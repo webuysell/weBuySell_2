@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>{{userobj.first_name}} {{userobj.last_name}}</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <h3><a class="navbar navbar-dark bg-dark" href="/dashboard"><b> WeBuySell</b></a></h3>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="">Search</a>
+                    </li>
+                </ul>
+                <span class="navbar-text">
+                    <a href="/logout" role="button" id="logout_button" class="btn btn-primary">Logout</a> 
+                </span>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="profile_info">
+        <table>
+            <tr>
+                <td><h5>Name: </h5></td>
+                <td><h5> {{userobj.first_name}} {{userobj.last_name}}</h5></td>
+            </tr>
+            <tr>
+                <td><h5>Email:</h5></td>
+                <td><h5>{{userobj.email}}</h5></td>
+            </tr>
+            {% if current_user.id == userobj.id %}
+            <form action="/user/{{current_user.id}}/edit" method="GET">
+                <tr>
+                    <td><button>Edit</button></td>
+                </tr>
+            </form>
+            {% endif %}
+            <!-- <tr>
+                <td><button>Back</button></td>
+            </tr> -->
+        </table>
+    </div>
+    
+</body>
+</html>

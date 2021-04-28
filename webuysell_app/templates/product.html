@@ -54,7 +54,7 @@
         <p>Condition : {{this_product.condition}} </p>
         <p>Price :$ {{this_product.price}} </p>
         <p>Negotiable : {{this_product.negotiation}} </p>
-        <p>Seller : <a href="#"> {{this_product.seller.first_name}} {{this_product.seller.last_name}} </a></p>
+        <p>Seller : <a href="/user/{{this_product.seller.id}}"> {{this_product.seller.first_name}} {{this_product.seller.last_name}} </a></p>
         </div>
         <div class="delete_button">
             {% if this_product.seller.id == this_user.id %}
