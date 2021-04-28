@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Product</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}">
@@ -54,7 +54,7 @@
         <p>Condition : {{this_product.condition}} </p>
         <p>Price :$ {{this_product.price}} </p>
         <p>Negotiable : {{this_product.negotiation}} </p>
-        <p>Seller : <a href="#"> {{this_product.seller.first_name}} {{this_product.seller.last_name}} </a></p>
+        <p>Seller : <a href="/user/{{this_product.seller.id}}"> {{this_product.seller.first_name}} {{this_product.seller.last_name}} </a></p>
         </div>
         <div class="delete_button">
             {% if this_product.seller.id == this_user.id %}

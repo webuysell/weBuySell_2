@@ -5,3 +5,12 @@
 body{
     background-color: white;
 }
+.profile_info{
+    /* outline: black solid 3px; */
+    display: inline-block;
+    margin: 4%;
+}
+.no-style-btn{
+    text-decoration: none;
+    color: initial;
+}
