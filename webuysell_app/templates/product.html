@@ -25,7 +25,7 @@
                         <a class="nav-link" href="/dashboard">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="">Search</a>
+                    <a class="nav-link" href="/search">Search</a>
                     </li>
                 </ul>
                 <span class="navbar-text">
@@ -45,7 +45,7 @@
             {% csrf_token %}
             <input type="file" class='form-control' name="picture">
             <div class="mb-4"></div>
-            <button class="btn btn-warning">Upload</button>
+            <button class="btn btn-primary" name="upload_btn">Upload</button>
         </form>
         </div>
         <div class="information">

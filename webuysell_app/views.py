@@ -204,7 +204,7 @@ def search(request):
         
         # to add more search field, need to add other queries
         
-        entry_query = get_query(query_string, ['product_name', "seller"])
+        entry_query = get_query(query_string, ['product_name'])
         found_entries = Product.objects.filter(entry_query).order_by('id')
 
     context = { 
