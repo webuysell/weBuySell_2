@@ -5,3 +5,40 @@
 body{
     background-color: white;
 }
+
+
+.search_button{
+    padding-left: 10px;
+}
+
+.search {
+    padding-top: 30px;
+
+}
+
+.product_info {
+    padding-top: 30px;
+    padding-left: 25%;
+
+}
+
+button[name="upload_btn"]{
+    margin-left:80%;
+}
+
+.product_h1{
+    text-align:center;
+    margin-bottom: 30px;
+}
+
+.information {
+    padding: 30px;
+    margin-left: 60px;
+    display: inline-block;
+
+}
+
+.picture{
+    display: inline-block;
+    padding-top: 30px;
+}
