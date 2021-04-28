@@ -154,7 +154,7 @@ def search(request):
         found_entries = Product.objects.filter(entry_query).order_by('id')
 
     context = { 
-        'this_user' : User.objects.get(id=request.session["user_id"]),1028162055
+        'this_user' : User.objects.get(id=request.session["user_id"]),
         'query_string': query_string,
         'found_entries': found_entries
     }
