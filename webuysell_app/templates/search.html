@@ -42,14 +42,14 @@
                 {{event_filter.form}}
                 <input type="text" name="q">
                 <div class="search_button">
-                    <button class="btn" type="submit">Search </button>
+                    <button class="btn btn-primary" type="submit">Search </button>
                 </div>
             </form>
         </div>
 
         <hr>
 
-        <div class="search_result">
+        <div class="table">
             <table>
                 <thead>
                     <tr>
@@ -74,7 +74,7 @@
                                 <td>${{product.price}}</td>
                                 <td>{{product.condition}}</td>
                                 <td>{{product.negotiation}}</td>
-                                <td><a href="/user/{{this_user.owner.id}}"><b>{{product.seller.first_name}} {{product.seller.last_name}}</b></a></td>
+                                <td><a href="/user/{{product.seller.id}}"><b>{{product.seller.first_name}} {{product.seller.last_name}}</b></a></td>
                                 
                         </tr>
                     
