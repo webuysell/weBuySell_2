@@ -26,6 +26,23 @@ class UserManager(models.Manager):
             errors['dup'] = "Email taken, use another"
         return errors
 
+    def update_validator(self, postData):
+        errors = {}
+        if len(postData['firstname']) < 2:
+            errors['firstname'] = "Name must be at least 2 characters long."
+        if len(postData['lastname']) < 2:
+            errors['lastname'] = "Name must be at least 2 characters long."
+        if len(postData['email']) < 6:
+            errors['email'] = "email is too short"
+        EMAIL_REGEX = re.compile('^[_a-z0-9-]+(.[_a-z0-9-]+)@[a-z0-9-]+(.[a-z0-9-]+)(.[a-z]{2,4})$')
+        if len(postData["email"]) == 0:
+            errors["email_blank"] = "Email is required."
+        elif not EMAIL_REGEX.match(postData['email']):
+            errors['reg_email'] = "Email in wrong format"
+        if len(postData['password']) < 8:
+            errors['password'] = "Password cannot be less than 8 characters."
+        return errors
+
     def login_validator(self, postData):
         errors = {}
         if len(postData['password']) < 8:
